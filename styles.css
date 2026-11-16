@@ -222,21 +222,34 @@ a {
   color: inherit;
   font: inherit;
   cursor: pointer;
-  padding: 0.15rem 0.35rem;
-  margin: -0.15rem -0.35rem;
+  padding: 0.2rem 0.45rem;
+  margin: -0.2rem -0.45rem;
   border-radius: 6px;
   transition: color 0.2s ease, background 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .views:hover,
 .views:focus-visible {
   color: #ffd27a;
-  background: rgba(240, 168, 32, 0.12);
+  background: rgba(240, 168, 32, 0.14);
   outline: none;
 }
 
-.views.is-bump #viewCount {
+.views:active {
+  transform: scale(0.98);
+}
+
+#viewCount {
   display: inline-block;
+  min-width: 3.2em;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px dashed rgba(255, 210, 122, 0.55);
+  cursor: pointer;
+}
+
+.views.is-bump #viewCount {
   animation: countBump 0.35s ease;
 }
 

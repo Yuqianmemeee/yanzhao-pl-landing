@@ -16,20 +16,26 @@
     localStorage.setItem(STORAGE_KEY, String(n));
   }
 
-  function format(n) {
-    return String(n);
-  }
-
   let views = readCount();
-  countEl.textContent = format(views);
+  countEl.textContent = String(views);
 
-  btn.addEventListener("click", function () {
+  function bump() {
     views += 1;
     writeCount(views);
-    countEl.textContent = format(views);
+    countEl.textContent = String(views);
     btn.classList.remove("is-bump");
-    // restart animation
     void btn.offsetWidth;
     btn.classList.add("is-bump");
+  }
+
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    bump();
+  });
+
+  // 点数字本身也能加
+  countEl.addEventListener("click", function (e) {
+    e.stopPropagation();
+    bump();
   });
 })();
