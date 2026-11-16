@@ -17,25 +17,22 @@
   }
 
   let views = readCount();
-  countEl.textContent = String(views);
 
-  function bump() {
+  function bump(animate) {
     views += 1;
     writeCount(views);
     countEl.textContent = String(views);
+    if (!animate) return;
     btn.classList.remove("is-bump");
     void btn.offsetWidth;
     btn.classList.add("is-bump");
   }
 
+  // 每次打开 / 刷新页面：浏览量 +1
+  bump(false);
+
   btn.addEventListener("click", function (e) {
     e.preventDefault();
-    bump();
-  });
-
-  // 点数字本身也能加
-  countEl.addEventListener("click", function (e) {
-    e.stopPropagation();
-    bump();
+    bump(true);
   });
 })();
